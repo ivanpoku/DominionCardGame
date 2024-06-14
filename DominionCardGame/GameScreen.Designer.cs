@@ -221,7 +221,7 @@
             // handButton
             // 
             this.handButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.handButton.Location = new System.Drawing.Point(247, 46);
+            this.handButton.Location = new System.Drawing.Point(246, 381);
             this.handButton.Name = "handButton";
             this.handButton.Size = new System.Drawing.Size(176, 70);
             this.handButton.TabIndex = 17;

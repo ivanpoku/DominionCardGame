@@ -19,31 +19,31 @@ namespace DominionCardGame
 
         public int roundCoins;
         public int roundActions;
+        int timerValue;
 
         public static bool playerCanPlayCard = false;
-        public static bool playerCanBuy = false;
+        bool playerCanBuy = false;
         public static bool mouseClicked = false;
         public GameScreen()
         {
             InitializeComponent();
-            handButton.Visible = true;
+            handButton.Visible = false;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            timerValue++;
             Refresh();
         }
         private void handButton_Click(object sender, EventArgs e)
         {
-            if (Form1.player.roundCoins == 0)
+            if (Form1.player.roundBuys == 0)
             {
                 playerCanBuy = false;
                 Thread.Sleep(100);
                 playerHandScreen ps = new playerHandScreen();
-                Form f = this.FindForm();
-                f.Controls.Add(ps);
-                f.Controls.Remove(this);
-                playerHandScreen.CPUActionTurn();
+                Form1.ChangeScreen(this, ps);
+                Form1.playerTurn = "CPU";
                 handButton.Visible = false;
             }
             
@@ -74,6 +74,7 @@ namespace DominionCardGame
             Rectangle mouseRec = new Rectangle(e.X, e.Y, 1, 1);
             foreach (Rectangle rectangle in Form1.cardRectangles)
             {
+                timerValue = 0;
                 if (mouseRec.IntersectsWith(Form1.cardRectangles[0]) && Form1.player.roundBuys >= 1 && playerCanBuy == true)
                 {
                     if (Form1.player.roundCoins >= Form1.coins1.cost)
@@ -212,6 +213,7 @@ namespace DominionCardGame
                 if (Form1.player.roundBuys == 0)
                 {
                     handButton.Visible = true;
+                    playerCanBuy = false;
                 }
                 Console.WriteLine($"{rectangle} Clicked, Player Coins: {Form1.player.roundCoins}");
                 updateStats();
@@ -227,7 +229,6 @@ namespace DominionCardGame
                 e.Graphics.FillRectangle(Brushes.White, rectangle);
                 foreach (Card card in Form1.allCards)
                 {
-                    e.Graphics.DrawImage(playerHandScreen.cardImage, rectangle);
                     using (Font font1 = new Font("Arial", 8, FontStyle.Regular, GraphicsUnit.Point))
                     {
                         e.Graphics.DrawString($"{Form1.coins1.name}\nCost:{Form1.coins1.cost}\n+{Form1.coins1.coins} Treasure", font1, Brushes.Black, Form1.cardRectangles[0]);
@@ -253,17 +254,15 @@ namespace DominionCardGame
             e.Graphics.FillRectangle(Brushes.Black, statsDispaly);
             for (int i = 0; i < Form1.playerHand.Count; i++)
             {
-                using (Font font1 = new Font("Arial", 8, FontStyle.Regular, GraphicsUnit.Point))
+                using (Font font1 = new Font("Arial", 10, FontStyle.Regular, GraphicsUnit.Point))
                 {
                     e.Graphics.DrawString("Player Stats", font1, Brushes.White, statsDispaly);
                     e.Graphics.DrawString($"\nCoins: {Form1.player.roundCoins}", font1, Brushes.White, statsDispaly);
-                    e.Graphics.DrawString($"\n\nActions: {Form1.playerHand[0].actions + Form1.playerHand[1].actions + Form1.playerHand[2].actions + Form1.playerHand[3].actions + Form1.playerHand[4].actions}", font1, Brushes.White, statsDispaly);
+                    e.Graphics.DrawString($"\n\nActions: {Form1.player.roundActions}", font1, Brushes.White, statsDispaly);
                     e.Graphics.DrawString($"\n\n\nBuys: {Form1.player.roundBuys}", font1, Brushes.White, statsDispaly);
-                    e.Graphics.DrawString($"\n\n\n\nCards Playable: {Form1.playerHand[0].cards + Form1.playerHand[1].cards + Form1.playerHand[2].cards + Form1.playerHand[3].cards + Form1.playerHand[4].cards}", font1, Brushes.White, statsDispaly);
-                    e.Graphics.DrawString($"\n\n\n\n\nTotal Victory: {Form1.player.TotalVictory}", font1, Brushes.White, statsDispaly);
+                    e.Graphics.DrawString($"\n\n\n\nCards Playable: {Form1.player.roundCards}", font1, Brushes.White, statsDispaly);
                 }
             }
-            //Refresh();
         }
     }
 }

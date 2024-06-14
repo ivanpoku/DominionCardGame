@@ -40,7 +40,7 @@
             this.shopButton.TabIndex = 0;
             this.shopButton.Text = "proceed?";
             this.shopButton.UseVisualStyleBackColor = true;
-            this.shopButton.Click += new System.EventHandler(this.handButton_Click);
+            this.shopButton.Click += new System.EventHandler(this.shopButton_Click);
             // 
             // playerHandScreen
             // 

@@ -14,6 +14,10 @@ namespace DominionCardGame
 {
     public partial class Form1 : Form
     {
+        //public static bool playerCanPlay;
+        //public static bool CpuCanPlay;
+        public static string playerTurn;
+
         public static int decideCards;
         public static List<Rectangle> cardRectangles = new List<Rectangle>();
 
@@ -22,39 +26,26 @@ namespace DominionCardGame
         public static List<Card> playerHand = new List<Card>();
         public static List<Card> computerhand = new List<Card>();
 
-        public static Card coins1 = new Card(1, 0, 0, 0, 0, "Copper", 0, "Treasure", "Properties/Resources/372px-Copper.jpg");
-        public static Card coins2 = new Card(2, 0, 0, 0, 0, "Silver", 3, "Treasure", "Properties/Resources/375px-Silver.jpg");
-        public static Card coins3 = new Card(3, 0, 0, 0, 0, "Gold", 6, "Treasure", "Properties/Resources/375px-Gold.jpg");
-        public static Card victory1 = new Card(0, 0, 0, 0, 1, "Estate", 2, "Victory", "Properties/Resources/373px-Estate.jpg");
-        public static Card victory2 = new Card(0, 0, 0, 0, 3, "Dutchy", 5, "Victory", "Properties/Resources/372px-Dutchy.jpg");
-        public static Card victory3 = new Card(0, 0, 0, 0, 6, "Province", 8, "Victory", "Properties/Resources/375px-Province.jpg");
-        public static Card negVictory = new Card(0, 0, 0, 0, -1, "Curse", 0, "Curse", "Properties/Resources/372px-Curse.jpg");
+        public static Card coins1 = new Card(1, 0, 0, 0, 0, "Copper", 0, "Treasure");
+        public static Card coins2 = new Card(2, 0, 0, 0, 0, "Silver", 3, "Treasure");
+        public static Card coins3 = new Card(3, 0, 0, 0, 0, "Gold", 6, "Treasure");
+        public static Card victory1 = new Card(0, 1, 1, 1, 1, "Estate", 2, "Victory");
+        public static Card victory2 = new Card(0, 3, 3, 3, 3, "Dutchy", 5, "Victory");
+        public static Card victory3 = new Card(0, 6, 6, 6, 6, "Province", 8, "Victory");
+        public static Card negVictory = new Card(0, 0, 0, 0, -1, "Curse", 0, "Curse");
 
         public static Player player = new Player(0, 0, 1, 1, 0, 0);
-        public static Player CPU = new Player(0, 0, 0, 0, 0, 0);
+        public static Player CPU = new Player(0, 0, 1, 1, 0, 0);
         public Form1()
         {
             InitializeComponent();
             initializeCards();
+            playerTurn = "Player";
             Form f = this.FindForm();
             playerHandScreen ps = new playerHandScreen();
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen();     
             ChangeScreen(f, ps);
-
-            playerHandScreen.playerActionTurn();
-            GameScreen.updateStats();
-
-            //ChangeScreen(ps, gs);
-            //GameScreen.playerBuyTurn();
-            GameScreen.updateStats();
-
-            //ChangeScreen(gs, ps);
-            //playerHandScreen.CPUActionTurn();
-            Thread.Sleep(1000);
-
-            //ChangeScreen(ps, gs);
-            //GameScreen.CpuBuyTurn();
-
+            
         }
 
         public static void ChangeScreen(object sender, UserControl next)
@@ -87,7 +78,6 @@ namespace DominionCardGame
             int cardCost;
             string cardName;
             string cardType;
-            string cardImage;
 
             int recX;
             int recY;
@@ -125,10 +115,7 @@ namespace DominionCardGame
                     reader.ReadToNextSibling("type");
                     cardType = reader.ReadString();
 
-                    reader.ReadToNextSibling("image");
-                    cardImage = reader.ReadString();
-
-                    Card newCard = new Card(cardCoins, cardActions, cardBuys, cardCards, cardVictoryP, cardName, cardCost, cardType, cardImage);
+                    Card newCard = new Card(cardCoins, cardActions, cardBuys, cardCards, cardVictoryP, cardName, cardCost, cardType);
 
                     allCards.Add(newCard);
                 }
