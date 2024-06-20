@@ -30,7 +30,14 @@ namespace DominionCardGame
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-
+            if(tutorialDisplay.BackgroundImage == Properties.Resources.tutImage1)
+            {
+                tutorialDisplay.BackgroundImage = Properties.Resources.tutImage2;
+            }
+            if(tutorialDisplay.BackgroundImage == Properties.Resources.tutImage2)
+            {
+                tutorialDisplay.BackgroundImage= Properties.Resources.tutImage3;
+            }
         }
     }
 }
