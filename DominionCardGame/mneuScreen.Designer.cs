@@ -33,6 +33,7 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.tutorialDisplay = new System.Windows.Forms.PictureBox();
             this.nextButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tutorialDisplay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,21 @@
             this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.Moccasin;
+            this.backButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.backButton.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.ForeColor = System.Drawing.Color.Black;
+            this.backButton.Location = new System.Drawing.Point(185, 411);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(62, 57);
+            this.backButton.TabIndex = 4;
+            this.backButton.Text = "<";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // mneuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,6 +113,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.tutorialDisplay);
             this.Controls.Add(this.exitButton);
@@ -115,5 +132,6 @@
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.PictureBox tutorialDisplay;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button backButton;
     }
 }
