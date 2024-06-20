@@ -11,10 +11,10 @@ namespace DominionCardGame
     
     public class Card
     {
-        public int coins, actions, buys, cards, victoryP, cost;
+        public int coins, actions, buys, cards, victoryP, cost, cardsAmount;
         public string name, type;
 
-        public Card(int _coins, int _actions, int _buys, int _cards, int _victoryP, string _name, int _cost, string _type)
+        public Card(int _coins, int _actions, int _buys, int _cards, int _victoryP, string _name, int _cost, string _type, int _cardsAmount)
         {
             coins = _coins;
             actions = _actions;
@@ -24,6 +24,7 @@ namespace DominionCardGame
             name = _name;
             cost = _cost;
             type = _type;
+            cardsAmount = _cardsAmount;
         }
     }
 }

@@ -21,18 +21,22 @@ namespace DominionCardGame
         public static int decideCards;
         public static List<Rectangle> cardRectangles = new List<Rectangle>();
 
+        public static int playerCardsPlayed = 0;
+        public static int cpuCardsPlayed = 0;
+
         public static List<Card> allCards = new List<Card>();
         public static List<Card> roundCards = new List<Card>();
         public static List<Card> playerHand = new List<Card>();
         public static List<Card> computerhand = new List<Card>();
+        public static List<Card> emptyPile = new List<Card>();
 
-        public static Card coins1 = new Card(1, 0, 0, 0, 0, "Copper", 0, "Treasure");
-        public static Card coins2 = new Card(2, 0, 0, 0, 0, "Silver", 3, "Treasure");
-        public static Card coins3 = new Card(3, 0, 0, 0, 0, "Gold", 6, "Treasure");
-        public static Card victory1 = new Card(0, 1, 1, 1, 1, "Estate", 2, "Victory");
-        public static Card victory2 = new Card(0, 3, 3, 3, 3, "Dutchy", 5, "Victory");
-        public static Card victory3 = new Card(0, 6, 6, 6, 6, "Province", 8, "Victory");
-        public static Card negVictory = new Card(0, 0, 0, 0, -1, "Curse", 0, "Curse");
+        public static Card coins1 = new Card(1, 0, 0, 0, 0, "Copper", 0, "Treasure", 500);
+        public static Card coins2 = new Card(2, 0, 0, 0, 0, "Silver", 3, "Treasure", 16);
+        public static Card coins3 = new Card(3, 0, 0, 0, 0, "Gold", 6, "Treasure", 16);
+        public static Card victory1 = new Card(0, 0, 0, 0, 1, "Estate", 2, "Victory", 8);
+        public static Card victory2 = new Card(0, 0, 0, 0, 3, "Dutchy", 5, "Victory", 8);
+        public static Card victory3 = new Card(0, 0, 0, 0, 6, "Province", 8, "Victory",8);
+        public static Card negVictory = new Card(0, 0, 0, 0, -1, "Curse", 0, "Curse", 30);
 
         public static Player player = new Player(0, 0, 1, 1, 0, 0);
         public static Player CPU = new Player(0, 0, 1, 1, 0, 0);
@@ -41,11 +45,16 @@ namespace DominionCardGame
             InitializeComponent();
             initializeCards();
             playerTurn = "Player";
-            Form f = this.FindForm();
+            for (int i = 0; i < playerHand.Count; i++)
+            {
+                CPU.TotalVictory += computerhand[i].victoryP;
+                player.TotalVictory += playerHand[i].victoryP;
+            }
             playerHandScreen ps = new playerHandScreen();
-            GameScreen gs = new GameScreen();     
-            ChangeScreen(f, ps);
+            mneuScreen ms = new mneuScreen();   
+            ChangeScreen(this, ms);
             
+
         }
 
         public static void ChangeScreen(object sender, UserControl next)
@@ -78,6 +87,7 @@ namespace DominionCardGame
             int cardCost;
             string cardName;
             string cardType;
+            int amountCards;
 
             int recX;
             int recY;
@@ -115,9 +125,14 @@ namespace DominionCardGame
                     reader.ReadToNextSibling("type");
                     cardType = reader.ReadString();
 
-                    Card newCard = new Card(cardCoins, cardActions, cardBuys, cardCards, cardVictoryP, cardName, cardCost, cardType);
+                    reader.ReadToNextSibling("cardsAmount");
+                    amountCards = Convert.ToInt16(reader.ReadString());
+
+                    Card newCard = new Card(cardCoins, cardActions, cardBuys, cardCards, cardVictoryP, cardName, cardCost, cardType, amountCards);
 
                     allCards.Add(newCard);
+
+                    
                 }
             }
 
@@ -145,8 +160,18 @@ namespace DominionCardGame
                     Rectangle cardRec = new Rectangle(recX, recY, recWidth, recHeight);
 
                     cardRectangles.Add(cardRec);
+
+
                 }
             }
+
+            roundCards.Add(coins1);
+            roundCards.Add(coins2);
+            roundCards.Add(coins3);
+            roundCards.Add(victory1);
+            roundCards.Add(victory2);
+            roundCards.Add(victory3);
+            roundCards.Add(negVictory);
 
             //Decides cards in current round
             for (int i = 0; i < 8; i++)
@@ -168,5 +193,7 @@ namespace DominionCardGame
                 computerhand.Add(victory1);
             }
         }
+
+        
     }
 }

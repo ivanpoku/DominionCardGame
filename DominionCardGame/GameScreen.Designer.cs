@@ -44,8 +44,6 @@
             this.victory3Button = new System.Windows.Forms.Button();
             this.victory1Button = new System.Windows.Forms.Button();
             this.negVictoryButton = new System.Windows.Forms.Button();
-            this.turnDisplay = new System.Windows.Forms.Label();
-            this.turnTypeLabel = new System.Windows.Forms.Label();
             this.handButton = new System.Windows.Forms.Button();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -200,24 +198,6 @@
             this.negVictoryButton.UseVisualStyleBackColor = true;
             this.negVictoryButton.Visible = false;
             // 
-            // turnDisplay
-            // 
-            this.turnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turnDisplay.Location = new System.Drawing.Point(647, 13);
-            this.turnDisplay.Name = "turnDisplay";
-            this.turnDisplay.Size = new System.Drawing.Size(150, 23);
-            this.turnDisplay.TabIndex = 15;
-            this.turnDisplay.Text = "null";
-            // 
-            // turnTypeLabel
-            // 
-            this.turnTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turnTypeLabel.Location = new System.Drawing.Point(647, 46);
-            this.turnTypeLabel.Name = "turnTypeLabel";
-            this.turnTypeLabel.Size = new System.Drawing.Size(150, 23);
-            this.turnTypeLabel.TabIndex = 16;
-            this.turnTypeLabel.Text = "null";
-            // 
             // handButton
             // 
             this.handButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -241,8 +221,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.handButton);
-            this.Controls.Add(this.turnTypeLabel);
-            this.Controls.Add(this.turnDisplay);
             this.Controls.Add(this.negVictoryButton);
             this.Controls.Add(this.victory2Button);
             this.Controls.Add(this.victory3Button);
@@ -284,8 +262,6 @@
         private System.Windows.Forms.Button victory3Button;
         private System.Windows.Forms.Button victory1Button;
         private System.Windows.Forms.Button negVictoryButton;
-        private System.Windows.Forms.Label turnDisplay;
-        private System.Windows.Forms.Label turnTypeLabel;
         private System.Windows.Forms.Button handButton;
         private System.Windows.Forms.Timer gameTimer;
     }

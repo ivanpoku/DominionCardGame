@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.shopButton = new System.Windows.Forms.Button();
+            this.drawButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // shopButton
@@ -42,15 +43,29 @@
             this.shopButton.UseVisualStyleBackColor = true;
             this.shopButton.Click += new System.EventHandler(this.shopButton_Click);
             // 
+            // drawButton
+            // 
+            this.drawButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.drawButton.Location = new System.Drawing.Point(657, 207);
+            this.drawButton.Name = "drawButton";
+            this.drawButton.Size = new System.Drawing.Size(121, 56);
+            this.drawButton.TabIndex = 1;
+            this.drawButton.Text = "Draw Card";
+            this.drawButton.UseVisualStyleBackColor = true;
+            this.drawButton.Visible = false;
+            this.drawButton.Click += new System.EventHandler(this.drawButton_Click);
+            // 
             // playerHandScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
+            this.Controls.Add(this.drawButton);
             this.Controls.Add(this.shopButton);
             this.DoubleBuffered = true;
             this.Name = "playerHandScreen";
             this.Size = new System.Drawing.Size(800, 518);
+            this.Load += new System.EventHandler(this.playerHandScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.playerHandScreen_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.playerHandScreen_MouseClick);
             this.ResumeLayout(false);
@@ -60,5 +75,6 @@
         #endregion
 
         private System.Windows.Forms.Button shopButton;
+        private System.Windows.Forms.Button drawButton;
     }
 }
