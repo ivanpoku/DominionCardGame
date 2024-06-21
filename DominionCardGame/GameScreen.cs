@@ -29,6 +29,7 @@ namespace DominionCardGame
         {
             InitializeComponent();
             handButton.Visible = false;
+            cardSlotCount.Text = $"{Form1.emptyPile.Count} Empty Card Slots";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -65,6 +66,7 @@ namespace DominionCardGame
             cpuCanBuy = true;
             for (int i = 0; i < 16; i++)
             {
+                //Creates Random Decision
                 playerHandScreen.cpuDecision = new Random().Next(0, i);
                 Console.WriteLine($"{playerHandScreen.cpuDecision}");
             }
@@ -96,6 +98,8 @@ namespace DominionCardGame
         }
         private void GameScreen_MouseClick(object sender, MouseEventArgs e)
         {
+
+            //Adds card object to player hand list based off which card was clicked
             Rectangle mouseRec = new Rectangle(e.X, e.Y, 1, 1);
             timerValue = 0;
             if (mouseRec.IntersectsWith(Form1.cardRectangles[0]) && Form1.player.roundBuys >= 1 && playerCanBuy == true)
@@ -256,7 +260,8 @@ namespace DominionCardGame
             {
                 handButton.Visible = true;
             }
-
+            cardSlotCount.Text = $"{Form1.emptyPile.Count} Empty Card Slots";
+            Refresh();
 
         }
         #endregion

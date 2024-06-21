@@ -46,6 +46,7 @@
             this.negVictoryButton = new System.Windows.Forms.Button();
             this.handButton = new System.Windows.Forms.Button();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.cardSlotCount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // coin1Button
@@ -213,13 +214,23 @@
             // gameTimer
             // 
             this.gameTimer.Enabled = true;
-            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
+            // cardSlotCount
+            // 
+            this.cardSlotCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardSlotCount.Location = new System.Drawing.Point(125, 57);
+            this.cardSlotCount.Name = "cardSlotCount";
+            this.cardSlotCount.Size = new System.Drawing.Size(417, 31);
+            this.cardSlotCount.TabIndex = 18;
+            this.cardSlotCount.Text = "null";
+            this.cardSlotCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
+            this.Controls.Add(this.cardSlotCount);
             this.Controls.Add(this.handButton);
             this.Controls.Add(this.negVictoryButton);
             this.Controls.Add(this.victory2Button);
@@ -264,5 +275,6 @@
         private System.Windows.Forms.Button negVictoryButton;
         private System.Windows.Forms.Button handButton;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label cardSlotCount;
     }
 }
